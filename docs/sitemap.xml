@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    
+    <url>
+     <loc>https://develephant.github.io/scorekeeper-plugin/</loc>
+     <lastmod>2018-03-15</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>https://develephant.github.io/scorekeeper-plugin/api/</loc>
+     <lastmod>2018-03-15</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>https://develephant.github.io/scorekeeper-plugin/encrypt/</loc>
+     <lastmod>2018-03-15</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>https://develephant.github.io/scorekeeper-plugin/demo/</loc>
+     <lastmod>2018-03-15</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>https://develephant.github.io/scorekeeper-plugin/about/</loc>
+     <lastmod>2018-03-15</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+</urlset>

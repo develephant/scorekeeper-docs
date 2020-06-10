@@ -1,0 +1,134 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "ScoreKeeper Plugin\n\n\nEasily keep track of your players scores locally on the device in a persistent manner.\n\n\n\n\nGet the Plugin\n\n\nIf you don't already have it, get the \nScoreKeeper\n plugin from the \nCorona Marketplace\n.\n\n\n\n\nLoad the Plugin\n\n\nLoad the plugin by adding an entry to the \nplugins\n table of \nbuild.settings\n file:\n\n\nsettings =\n{\n    plugins =\n    {\n        [\"plugin.scorekeeper\"] =\n        {\n            publisherId = \"com.develephant\"\n        },\n    },\n}\n\n\n\n\n\n\n\nInitialize the Plugin\n\n\nSee the \nAPI documentation\n for details on initializing the plugin in your code.",
+            "title": "Introduction"
+        },
+        {
+            "location": "/#scorekeeper-plugin",
+            "text": "Easily keep track of your players scores locally on the device in a persistent manner.",
+            "title": "ScoreKeeper Plugin"
+        },
+        {
+            "location": "/#get-the-plugin",
+            "text": "If you don't already have it, get the  ScoreKeeper  plugin from the  Corona Marketplace .",
+            "title": "Get the Plugin"
+        },
+        {
+            "location": "/#load-the-plugin",
+            "text": "Load the plugin by adding an entry to the  plugins  table of  build.settings  file:  settings =\n{\n    plugins =\n    {\n        [\"plugin.scorekeeper\"] =\n        {\n            publisherId = \"com.develephant\"\n        },\n    },\n}",
+            "title": "Load the Plugin"
+        },
+        {
+            "location": "/#initialize-the-plugin",
+            "text": "See the  API documentation  for details on initializing the plugin in your code.",
+            "title": "Initialize the Plugin"
+        },
+        {
+            "location": "/api/",
+            "text": "ScoreKeeper\n\n\nnew\n\n\nInitialize the \nScoreKeeper\n object.\n\n\nnew\n([\nuseEncryption\n])\n\n\n\n\n\n\nArguments\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\nuseEncryption\n\n\nEncrypt player scores. See the \nEncryption\n section.\n\n\nBoolean\n\n\nN\n\n\n\n\n\n\n\n\nReturns\n\n\nA \nScoreKeeper\n object on which all other methods are called.\n\n\nExamples\n\n\nDefault\n\n\nlocal\n \nScoreKeeper\n \n=\n \nrequire\n(\n\"plugin.scorekeeper\"\n)\n\n\nlocal\n \nScores\n \n=\n \nScoreKeeper\n.\nnew\n()\n \n-- ScoreKeeper Object\n\n\n\n\n\n\nCompact\n\n\nlocal\n \nScores\n \n=\n \nrequire\n(\n\"plugin.scorekeeper\"\n).\nnew\n()\n\n\n\n\n\n\nNotes\n\n\nYou should only initialize one ScoreKeeper object in your app.\n \n\n\nYou can do this by placing the initialization in a \"globals\" Lua module, or adding it to the global Lua space (generally you don't want to add to the global space, but this would be considered a \"responsable\" global):\n\n\n_G\n.\nScores\n \n=\n \nrequire\n(\n\"plugin.scorekeeper\"\n).\nnew\n()\n\n\n\n\n\n\nYou can then access the \nScoreKeeper\n object anywhere in your code files.\n\n\n--anyfile.lua\n\n\nScores\n:\nsave\n(\n200\n)\n\n\n\n\n\n\n\n\nScoreKeeper Object\n\n\nAll of the following methods are called on a \nScoreKeeper\n object. See \nnew\n above.\n\n\nsave\n\n\nSave the players score.\n\n\nsave\n(\nscore\n[,\n \nlimit\n])\n\n\n\n\n\n\nArguments\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\nscore\n\n\nThe players score value to save.\n\n\nNumber\n\n\nY\n\n\n\n\n\n\nlimit\n\n\nCap the amount of scores saved. See \nNotes\n below.\n\n\nNumber\n\n\nN\n\n\n\n\n\n\n\n\nReturns\n\n\nA \nTable\n array of the current saved scores from \nhighest to lowest\n, or \nnil\n and an error.\n\n\nExamples\n\n\nDefault\n\n\nScores\n:\nsave\n(\n2000\n)\n\n\n\n\n\n\nUsing return value\n\n\nlocal\n \nscores\n \n=\n \nScores\n:\nsave\n(\n2000\n)\n\n\n\nfor\n \ni\n=\n1\n,\n \n#\nscores\n \ndo\n\n  \nprint\n(\ni\n,\n \nscores\n[\ni\n])\n\n\nend\n\n\n\n\n\n\nSave and cap to 10 scores\n\n\nlocal\n \nscores\n \n=\n \nScores\n:\nsave\n(\n154\n,\n \n10\n)\n\n\n\nfor\n \ni\n=\n1\n,\n \n#\nscores\n \ndo\n\n  \nprint\n(\ni\n,\n \nscores\n[\ni\n])\n\n\nend\n\n\n\n\n\n\nUsing error checking\n\n\nlocal\n \nscores\n,\n \nerr\n \n=\n \nScores\n:\nsave\n(\n1500\n)\n\n\n\nif\n \nnot\n \nscores\n \nthen\n\n  \nprint\n(\nerr\n)\n\n\nelse\n\n  \nfor\n \ni\n=\n1\n,\n \n#\nscores\n \ndo\n\n    \nprint\n(\ni\n,\n \nscores\n[\ni\n])\n\n  \nend\n\n\nend\n\n\n\n\n\n\nNotes\n\n\nIf you pass the \nlimit\n argument, the score list will be \"capped\" at that number. For example if you only want to keep the top 20 scores set the \nlimit\n to 20. Any new scores that are \nhigher than the lowest\n score in the list will be replaced to keep the list capped to 20 scores.\n\n\nYou can change the \nlimit\n at any time, but be aware if you set it to a smaller number than what you started with, the extra scores (lowest to highest) will be dropped to match the new \"cap\" size.\n\n\n\n\nlist\n\n\nList players saved scores.\n\n\nlist\n([\nsort\n][,\n \nlimit\n])\n\n\n\n\n\n\nArguments\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\nsort\n\n\nEither 'high' or 'low'. The default is 'high'. See \nNotes\n below.\n\n\nString\n\n\nN\n\n\n\n\n\n\nlimit\n\n\nCap the amount of scores returned. Defaults to all scores.\n\n\nNumber\n\n\nN\n\n\n\n\n\n\n\n\nReturns\n\n\nA \nTable\n array of score values. By default the scores are sorted from \nhighest to lowest\n. If no values have been saved yet, the array will be empty.\n\n\nExamples\n\n\nList all saved scores, highest to lowest\n\n\nlocal\n \nscores\n \n=\n \nScores\n:\nlist\n()\n\n\n\nfor\n \ni\n=\n1\n,\n \n#\nscores\n \ndo\n\n  \nprint\n(\ni\n,\n \nscores\n[\ni\n])\n\n\nend\n\n\n\n\n\n\nList top 5 saved scores (see also the \ntop\n method)\n\n\nlocal\n \nscores\n \n=\n \nScores\n:\nlist\n(\n5\n)\n\n\n\nfor\n \ni\n=\n1\n,\n \n#\nscores\n \ndo\n\n  \nprint\n(\ni\n,\n \nscores\n[\ni\n])\n\n\nend\n\n\n\n\n\n\nList all scores, lowest to highest\n\n\nlocal\n \nscores\n \n=\n \nScores\n:\nlist\n(\n'low'\n)\n\n\n\nfor\n \ni\n=\n1\n,\n \n#\nscores\n \ndo\n\n  \nprint\n(\ni\n,\n \nscores\n[\ni\n])\n\n\nend\n\n\n\n\n\n\nList 10 scores, lowest to highest\n\n\nlocal\n \nscores\n \n=\n \nScores\n:\nlist\n(\n'low'\n,\n \n10\n)\n\n\n\nfor\n \ni\n=\n1\n,\n \n#\nscores\n \ndo\n\n  \nprint\n(\ni\n,\n \nscores\n[\ni\n])\n\n\nend\n\n\n\n\n\n\nNotes\n\n\nPossible \nsort\n values\n\n\n\n\n'high' returns the scores from \nhighest to lowest\n.\n\n\n'low' returns the scores from \nlowest to highest\n.\n\n\n\n\nSee the \ntop\n method below, which is a convenience function to get the top scores.\n\n\n\n\ntop\n\n\nList the players top saved scores from \nhighest to lowest\n.\n\n\ntop\n([\nlimit\n])\n\n\n\n\n\n\nArguments\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\nlimit\n\n\nCap the amount of scores returned. Defaults to 10.\n\n\nNumber\n\n\nN\n\n\n\n\n\n\n\n\nReturns\n\n\nA \nTable\n array of the top 10 score values (unless \nlimit\n is provided), sorted from \nhighest to lowest\n. If no values have been saved yet, the array will be empty.\n\n\nExamples\n\n\nDefault (top 10)\n\n\nlocal\n \nscores\n \n=\n \nScores\n:\ntop\n()\n\n\n\nfor\n \ni\n=\n1\n,\n \n#\nscores\n \ndo\n\n  \nprint\n(\ni\n,\n \nscores\n[\ni\n])\n\n\nend\n\n\n\n\n\n\nLoad top 25 scores\n\n\nlocal\n \nscores\n \n=\n \nScores\n:\ntop\n(\n25\n)\n\n\n\nfor\n \ni\n=\n1\n,\n \n#\nscores\n \ndo\n\n  \nprint\n(\ni\n,\n \nscores\n[\ni\n])\n\n\nend\n\n\n\n\n\n\n\n\nbottom\n\n\nLoad player scores from the bottom of the list. See \nNotes\n below.\n\n\nbottom\n(\nlimit\n)\n\n\n\n\n\n\nArguments\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\nlimit\n\n\nCap the amount of scores returned.\n\n\nNumber\n\n\nY\n\n\n\n\n\n\n\n\nReturns\n\n\nA \nTable\n array of saved score values. If no values have been saved yet, the array will be empty. See \nNotes\n below.\n\n\nExample\n\n\nList the bottom 5 scores, sorted highest to lowest\n\n\nlocal\n \nscores\n \n=\n \nScores\n:\nbottom\n(\n5\n)\n\n\n\nfor\n \ni\n=\n1\n,\n \n#\nscores\n \ndo\n\n  \nprint\n(\ni\n,\n \nscores\n[\ni\n])\n\n\nend\n\n\n\n\n\n\nNotes\n\n\nIf you want an ordered list of scores from \nlowest to highest\n, you must use the \nlist\n method. This method returns the lowest scores saved, capped by the \nlimit\n argument, sorted from \nhighest to lowest\n.\n\n\nIf the \nlimit\n argument is equal to or greater than the amount of current scores saved, this method oprerate exactly like the \ntop\n method.\n\n\nIf you don't pass the \nlimit\n argument, the lowest score will be returned in the \nTable\n array. See also \nlowest\n.\n\n\n\n\nhighest\n\n\nGet the players highest score saved.\n\n\nhighest\n()\n\n\n\n\n\n\nArguments\n\n\nThis method takes no arguments.\n\n\nReturns\n\n\nA \nNumber\n value of the highest score. If no saved values exist returns 0.\n\n\nExample\n\n\nlocal\n \nscore\n \n=\n \nScores\n:\nhighest\n()\n\n\n\n\n\n\nNotes\n\n\nThis method returns a single value directly as a \nNumber\n. It is not a \nTable\n array.\n\n\n\n\nlowest\n\n\nGet the players lowest score saved.\n\n\nlowest\n()\n\n\n\n\n\n\nArguments\n\n\nThis method takes no arguments.\n\n\nReturns\n\n\nA \nNumber\n value of the lowest score. If no saved values exist returns 0.\n\n\nExample\n\n\nlocal\n \nscore\n \n=\n \nScores\n:\nlowest\n()\n\n\n\n\n\n\nNotes\n\n\nThis method returns a single value directly as a \nNumber\n. It is not a \nTable\n array.\n\n\n\n\ntrim\n\n\nTrim the players saved score list to the specified size and update the storage file.\n\n\ntrim\n(\nsize\n)\n\n\n\n\n\n\nArguments\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\nsize\n\n\nThe length of the new score list. Must be greater than zero. See \nNotes\n below.\n\n\nNumber\n\n\nY\n\n\n\n\n\n\n\n\nReturns\n\n\nA \nTable\n array of score values, sorted from \nhighest to lowest\n, or \nnil\n and an error.\n\n\nExamples\n\n\nTrim the list to contain only the top 10 scores\n\n\nlocal\n \nscores\n \n=\n \nScores\n:\ntrim\n(\n10\n)\n\n\n\nfor\n \ni\n=\n1\n,\n \n#\nscores\n \ndo\n\n  \nprint\n(\ni\n,\n \nscores\n[\ni\n])\n\n\nend\n\n\n\n\n\n\nUsing error checking\n\n\nlocal\n \nscores\n,\n \nerr\n \n=\n \nScores\n:\ntrim\n(\n10\n)\n\n\n\nif\n \nnot\n \nscores\n \nthen\n\n  \nprint\n(\nerr\n)\n\n\nelse\n\n  \nfor\n \ni\n=\n1\n,\n \n#\nscores\n \ndo\n\n    \nprint\n(\ni\n,\n \nscores\n[\ni\n])\n\n  \nend\n\n\nend\n\n\n\n\n\n\nNotes\n\n\nThis method is destructive by nature. After the trim has been the processed, the results will immediately be saved to the stroage file.\n\n\nTrim will remove any scores beyond the provided \nsize\n parameter. Scores are first sorted \nhighest to lowest\n before the trim.\n\n\nThe \nsize\n argument must be greater than zero. To clear all score values from the list use the \nempty\n method below.\n\n\n\n\nempty\n\n\nEmpty the players score list. All saved scores are removed and the storage file is updated.\n\n\nempty\n()\n\n\n\n\n\n\nArguments\n\n\nThis method takes no arguments.\n\n\nReturns\n\n\nAn empty \nTable\n array, or \nnil\n and an error.\n\n\nExamples\n\n\nDefault\n\n\nScores\n:\nempty\n()\n\n\n\n\n\n\nUsing error checking\n\n\nlocal\n \nscores\n,\n \nerr\n \n=\n \nScores\n:\nempty\n()\n\n\n\nif\n \nnot\n \nscores\n \nthen\n\n  \nprint\n(\nerr\n)\n\n\nelse\n\n  \nprint\n(\n\"success\"\n)\n\n\nend\n\n\n\n\n\n\nNotes\n\n\nThis method is destructive by nature. After the empty method has run, the results will immediately be saved to the stroage file (an empty \nTable\n array).\n\n\n\n\nflush\n\n\nDeletes all scores and the storage file from the device.\n\n\nflush\n()\n\n\n\n\n\n\nArguments\n\n\nThis method takes no arguments.\n\n\nReturns\n\n\nA \nBoolean\n \ntrue\n on success, or \nnil\n and an error.\n\n\nExample\n\n\nlocal\n \nok\n,\n \nerr\n \n=\n \nScores\n:\nflush\n()\n\n\n\nif\n \nnot\n \nok\n \nthen\n\n  \nprint\n(\nerr\n)\n\n\nelse\n\n  \nprint\n(\n\"storage file removed\"\n)\n\n\nend\n\n\n\n\n\n\nNotes\n\n\nThis method is destructive by nature. All scores and the storage file will no longer be accessible.\n\n\nA new storage file will be created the next time the \nsave\n method is used.\n\n\n\n\ndebug\n\n\nUtility method. Prints all saved scores to the Corona console.\n\n\nExample\n\n\nScores\n:\ndebug\n()",
+            "title": "API"
+        },
+        {
+            "location": "/api/#scorekeeper",
+            "text": "",
+            "title": "ScoreKeeper"
+        },
+        {
+            "location": "/api/#new",
+            "text": "Initialize the  ScoreKeeper  object.  new ([ useEncryption ])   Arguments     Name  Description  Type  Required      useEncryption  Encrypt player scores. See the  Encryption  section.  Boolean  N     Returns  A  ScoreKeeper  object on which all other methods are called.  Examples  Default  local   ScoreKeeper   =   require ( \"plugin.scorekeeper\" )  local   Scores   =   ScoreKeeper . new ()   -- ScoreKeeper Object   Compact  local   Scores   =   require ( \"plugin.scorekeeper\" ). new ()   Notes  You should only initialize one ScoreKeeper object in your app.    You can do this by placing the initialization in a \"globals\" Lua module, or adding it to the global Lua space (generally you don't want to add to the global space, but this would be considered a \"responsable\" global):  _G . Scores   =   require ( \"plugin.scorekeeper\" ). new ()   You can then access the  ScoreKeeper  object anywhere in your code files.  --anyfile.lua  Scores : save ( 200 )",
+            "title": "new"
+        },
+        {
+            "location": "/api/#scorekeeper-object",
+            "text": "All of the following methods are called on a  ScoreKeeper  object. See  new  above.",
+            "title": "ScoreKeeper Object"
+        },
+        {
+            "location": "/api/#save",
+            "text": "Save the players score.  save ( score [,   limit ])   Arguments     Name  Description  Type  Required      score  The players score value to save.  Number  Y    limit  Cap the amount of scores saved. See  Notes  below.  Number  N     Returns  A  Table  array of the current saved scores from  highest to lowest , or  nil  and an error.  Examples  Default  Scores : save ( 2000 )   Using return value  local   scores   =   Scores : save ( 2000 )  for   i = 1 ,   # scores   do \n   print ( i ,   scores [ i ])  end   Save and cap to 10 scores  local   scores   =   Scores : save ( 154 ,   10 )  for   i = 1 ,   # scores   do \n   print ( i ,   scores [ i ])  end   Using error checking  local   scores ,   err   =   Scores : save ( 1500 )  if   not   scores   then \n   print ( err )  else \n   for   i = 1 ,   # scores   do \n     print ( i ,   scores [ i ]) \n   end  end   Notes  If you pass the  limit  argument, the score list will be \"capped\" at that number. For example if you only want to keep the top 20 scores set the  limit  to 20. Any new scores that are  higher than the lowest  score in the list will be replaced to keep the list capped to 20 scores.  You can change the  limit  at any time, but be aware if you set it to a smaller number than what you started with, the extra scores (lowest to highest) will be dropped to match the new \"cap\" size.",
+            "title": "save"
+        },
+        {
+            "location": "/api/#list",
+            "text": "List players saved scores.  list ([ sort ][,   limit ])   Arguments     Name  Description  Type  Required      sort  Either 'high' or 'low'. The default is 'high'. See  Notes  below.  String  N    limit  Cap the amount of scores returned. Defaults to all scores.  Number  N     Returns  A  Table  array of score values. By default the scores are sorted from  highest to lowest . If no values have been saved yet, the array will be empty.  Examples  List all saved scores, highest to lowest  local   scores   =   Scores : list ()  for   i = 1 ,   # scores   do \n   print ( i ,   scores [ i ])  end   List top 5 saved scores (see also the  top  method)  local   scores   =   Scores : list ( 5 )  for   i = 1 ,   # scores   do \n   print ( i ,   scores [ i ])  end   List all scores, lowest to highest  local   scores   =   Scores : list ( 'low' )  for   i = 1 ,   # scores   do \n   print ( i ,   scores [ i ])  end   List 10 scores, lowest to highest  local   scores   =   Scores : list ( 'low' ,   10 )  for   i = 1 ,   # scores   do \n   print ( i ,   scores [ i ])  end   Notes  Possible  sort  values   'high' returns the scores from  highest to lowest .  'low' returns the scores from  lowest to highest .   See the  top  method below, which is a convenience function to get the top scores.",
+            "title": "list"
+        },
+        {
+            "location": "/api/#top",
+            "text": "List the players top saved scores from  highest to lowest .  top ([ limit ])   Arguments     Name  Description  Type  Required      limit  Cap the amount of scores returned. Defaults to 10.  Number  N     Returns  A  Table  array of the top 10 score values (unless  limit  is provided), sorted from  highest to lowest . If no values have been saved yet, the array will be empty.  Examples  Default (top 10)  local   scores   =   Scores : top ()  for   i = 1 ,   # scores   do \n   print ( i ,   scores [ i ])  end   Load top 25 scores  local   scores   =   Scores : top ( 25 )  for   i = 1 ,   # scores   do \n   print ( i ,   scores [ i ])  end",
+            "title": "top"
+        },
+        {
+            "location": "/api/#bottom",
+            "text": "Load player scores from the bottom of the list. See  Notes  below.  bottom ( limit )   Arguments     Name  Description  Type  Required      limit  Cap the amount of scores returned.  Number  Y     Returns  A  Table  array of saved score values. If no values have been saved yet, the array will be empty. See  Notes  below.  Example  List the bottom 5 scores, sorted highest to lowest  local   scores   =   Scores : bottom ( 5 )  for   i = 1 ,   # scores   do \n   print ( i ,   scores [ i ])  end   Notes  If you want an ordered list of scores from  lowest to highest , you must use the  list  method. This method returns the lowest scores saved, capped by the  limit  argument, sorted from  highest to lowest .  If the  limit  argument is equal to or greater than the amount of current scores saved, this method oprerate exactly like the  top  method.  If you don't pass the  limit  argument, the lowest score will be returned in the  Table  array. See also  lowest .",
+            "title": "bottom"
+        },
+        {
+            "location": "/api/#highest",
+            "text": "Get the players highest score saved.  highest ()   Arguments  This method takes no arguments.  Returns  A  Number  value of the highest score. If no saved values exist returns 0.  Example  local   score   =   Scores : highest ()   Notes  This method returns a single value directly as a  Number . It is not a  Table  array.",
+            "title": "highest"
+        },
+        {
+            "location": "/api/#lowest",
+            "text": "Get the players lowest score saved.  lowest ()   Arguments  This method takes no arguments.  Returns  A  Number  value of the lowest score. If no saved values exist returns 0.  Example  local   score   =   Scores : lowest ()   Notes  This method returns a single value directly as a  Number . It is not a  Table  array.",
+            "title": "lowest"
+        },
+        {
+            "location": "/api/#trim",
+            "text": "Trim the players saved score list to the specified size and update the storage file.  trim ( size )   Arguments     Name  Description  Type  Required      size  The length of the new score list. Must be greater than zero. See  Notes  below.  Number  Y     Returns  A  Table  array of score values, sorted from  highest to lowest , or  nil  and an error.  Examples  Trim the list to contain only the top 10 scores  local   scores   =   Scores : trim ( 10 )  for   i = 1 ,   # scores   do \n   print ( i ,   scores [ i ])  end   Using error checking  local   scores ,   err   =   Scores : trim ( 10 )  if   not   scores   then \n   print ( err )  else \n   for   i = 1 ,   # scores   do \n     print ( i ,   scores [ i ]) \n   end  end   Notes  This method is destructive by nature. After the trim has been the processed, the results will immediately be saved to the stroage file.  Trim will remove any scores beyond the provided  size  parameter. Scores are first sorted  highest to lowest  before the trim.  The  size  argument must be greater than zero. To clear all score values from the list use the  empty  method below.",
+            "title": "trim"
+        },
+        {
+            "location": "/api/#empty",
+            "text": "Empty the players score list. All saved scores are removed and the storage file is updated.  empty ()   Arguments  This method takes no arguments.  Returns  An empty  Table  array, or  nil  and an error.  Examples  Default  Scores : empty ()   Using error checking  local   scores ,   err   =   Scores : empty ()  if   not   scores   then \n   print ( err )  else \n   print ( \"success\" )  end   Notes  This method is destructive by nature. After the empty method has run, the results will immediately be saved to the stroage file (an empty  Table  array).",
+            "title": "empty"
+        },
+        {
+            "location": "/api/#flush",
+            "text": "Deletes all scores and the storage file from the device.  flush ()   Arguments  This method takes no arguments.  Returns  A  Boolean   true  on success, or  nil  and an error.  Example  local   ok ,   err   =   Scores : flush ()  if   not   ok   then \n   print ( err )  else \n   print ( \"storage file removed\" )  end   Notes  This method is destructive by nature. All scores and the storage file will no longer be accessible.  A new storage file will be created the next time the  save  method is used.",
+            "title": "flush"
+        },
+        {
+            "location": "/api/#debug",
+            "text": "Utility method. Prints all saved scores to the Corona console.  Example  Scores : debug ()",
+            "title": "debug"
+        },
+        {
+            "location": "/encrypt/",
+            "text": "Requirements\n\n\nTo use the encryption functionality, you must include the free \nOpenSSL plugin\n provided by \nCorona\n in your \nbuild.settings\n plugins section:\n\n\n...\n\nplugins =\n{\n    [\"plugin.openssl\"] =\n    {\n        publisherId = \"com.coronalabs\",\n    },\n}, \n\n...\n\n\n\n\n\nEnabling Encryption\n\n\nEnabling encryption will encrypt the score values in the storage file in which they are saved.\n\n\nOnce you enter encryption mode you can not go back to unencrypted scores unless you delete the storage file using the \nflush\n API method.\n\n\nTo enable encryption, pass \ntrue\n when initializing the \nScoreKeeper\n object. See also \nnew\n.\n\n\nExamples\n\n\nDefault\n\n\nlocal\n \nScoreKeeper\n \n=\n \nrequire\n(\n\"plugin.scorekeeper\"\n)\n\n\nlocal\n \nScores\n \n=\n \nScoreKeeper\n.\nnew\n(\ntrue\n)\n \n-- enable encryption\n\n\n\n\n\n\nCompact\n\n\nlocal\n \nScores\n \n=\n \nrequire\n(\n\"plugin.scorekeeper\"\n).\nnew\n(\ntrue\n)",
+            "title": "Encryption"
+        },
+        {
+            "location": "/encrypt/#requirements",
+            "text": "To use the encryption functionality, you must include the free  OpenSSL plugin  provided by  Corona  in your  build.settings  plugins section:  ...\n\nplugins =\n{\n    [\"plugin.openssl\"] =\n    {\n        publisherId = \"com.coronalabs\",\n    },\n}, \n\n...",
+            "title": "Requirements"
+        },
+        {
+            "location": "/encrypt/#enabling-encryption",
+            "text": "Enabling encryption will encrypt the score values in the storage file in which they are saved.  Once you enter encryption mode you can not go back to unencrypted scores unless you delete the storage file using the  flush  API method.  To enable encryption, pass  true  when initializing the  ScoreKeeper  object. See also  new .  Examples  Default  local   ScoreKeeper   =   require ( \"plugin.scorekeeper\" )  local   Scores   =   ScoreKeeper . new ( true )   -- enable encryption   Compact  local   Scores   =   require ( \"plugin.scorekeeper\" ). new ( true )",
+            "title": "Enabling Encryption"
+        },
+        {
+            "location": "/demo/",
+            "text": "ScoreKeeper Plugin Demo\n\n\n\nDownload\n\n\nClick \nhere\n to download a \nCorona\n demo project.\n\n\nDemo Instructions\n\n\n\n\n\n\nRun the project.\n\n\n\n\n\n\nTap the \nSave New Score\n button at least 15 times.\n\n\n\n\n\n\nTap other buttons and view the console output.\n\n\n\n\n\n\nReload demo to load saved scores and tap buttons.\n\n\n\n\n\n\nView saved scores in the \nDocuments\n sandbox directory.",
+            "title": "Demo Project"
+        },
+        {
+            "location": "/about/",
+            "text": "ScoreKeeper Plugin\n\n\nCode and documentation \u00a92018 C. Byerley (\ndevelephant\n).\n\n\nSupport\n\n\nCorona Community Plugins Forum",
+            "title": "About"
+        },
+        {
+            "location": "/about/#scorekeeper-plugin",
+            "text": "Code and documentation \u00a92018 C. Byerley ( develephant ).",
+            "title": "ScoreKeeper Plugin"
+        },
+        {
+            "location": "/about/#support",
+            "text": "Corona Community Plugins Forum",
+            "title": "Support"
+        }
+    ]
+}

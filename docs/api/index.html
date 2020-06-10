@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>API - ScoreKeeper Plugin</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  <link href="../css/extra.css" rel="stylesheet">
+  <link href="../css/friendly.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "API";
+    var mkdocs_page_input_path = "api.md";
+    var mkdocs_page_url = "/api/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> ScoreKeeper Plugin</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Introduction</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">API</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#scorekeeper">ScoreKeeper</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#new">new</a></li>
+        
+        </ul>
+    
+
+    <li class="toctree-l2"><a href="#scorekeeper-object">ScoreKeeper Object</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#save">save</a></li>
+        
+            <li><a class="toctree-l3" href="#list">list</a></li>
+        
+            <li><a class="toctree-l3" href="#top">top</a></li>
+        
+            <li><a class="toctree-l3" href="#bottom">bottom</a></li>
+        
+            <li><a class="toctree-l3" href="#highest">highest</a></li>
+        
+            <li><a class="toctree-l3" href="#lowest">lowest</a></li>
+        
+            <li><a class="toctree-l3" href="#trim">trim</a></li>
+        
+            <li><a class="toctree-l3" href="#empty">empty</a></li>
+        
+            <li><a class="toctree-l3" href="#flush">flush</a></li>
+        
+            <li><a class="toctree-l3" href="#debug">debug</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../encrypt/">Encryption</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../demo/">Demo Project</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../about/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">ScoreKeeper Plugin</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>API</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><img alt="logo" src="../img/logo128.png" /></p>
+<h2 id="scorekeeper">ScoreKeeper</h2>
+<h3 id="new">new</h3>
+<p>Initialize the <strong>ScoreKeeper</strong> object.</p>
+<div class="codehilite"><pre><span></span><span class="n">new</span><span class="p">([</span><span class="n">useEncryption</span><span class="p">])</span>
+</pre></div>
+
+
+<p><strong>Arguments</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>useEncryption</td>
+<td>Encrypt player scores. See the <strong><a href="../encrypt/">Encryption</a></strong> section.</td>
+<td><em>Boolean</em></td>
+<td><strong>N</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>A <strong>ScoreKeeper</strong> object on which all other methods are called.</p>
+<p><strong>Examples</strong></p>
+<p><em>Default</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">ScoreKeeper</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;plugin.scorekeeper&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">Scores</span> <span class="o">=</span> <span class="n">ScoreKeeper</span><span class="p">.</span><span class="n">new</span><span class="p">()</span> <span class="c1">-- ScoreKeeper Object</span>
+</pre></div>
+
+
+<p><em>Compact</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">Scores</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;plugin.scorekeeper&quot;</span><span class="p">).</span><span class="n">new</span><span class="p">()</span>
+</pre></div>
+
+
+<p><strong>Notes</strong></p>
+<p><strong><em>You should only initialize one ScoreKeeper object in your app.</em></strong> </p>
+<p>You can do this by placing the initialization in a "globals" Lua module, or adding it to the global Lua space (generally you don't want to add to the global space, but this would be considered a "responsable" global):</p>
+<div class="codehilite"><pre><span></span><span class="n">_G</span><span class="p">.</span><span class="n">Scores</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;plugin.scorekeeper&quot;</span><span class="p">).</span><span class="n">new</span><span class="p">()</span>
+</pre></div>
+
+
+<p>You can then access the <strong>ScoreKeeper</strong> object anywhere in your code files.</p>
+<div class="codehilite"><pre><span></span><span class="c1">--anyfile.lua</span>
+<span class="n">Scores</span><span class="p">:</span><span class="n">save</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+
+
+<hr />
+<h2 id="scorekeeper-object">ScoreKeeper Object</h2>
+<p>All of the following methods are called on a <strong>ScoreKeeper</strong> object. See <strong><a href="../api/#scorekeeper">new</a></strong> above.</p>
+<h3 id="save">save</h3>
+<p>Save the players score.</p>
+<div class="codehilite"><pre><span></span><span class="n">save</span><span class="p">(</span><span class="n">score</span><span class="p">[,</span> <span class="n">limit</span><span class="p">])</span>
+</pre></div>
+
+
+<p><strong>Arguments</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>score</td>
+<td>The players score value to save.</td>
+<td><em>Number</em></td>
+<td><strong>Y</strong></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Cap the amount of scores saved. See <strong>Notes</strong> below.</td>
+<td><em>Number</em></td>
+<td><strong>N</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>A <em>Table</em> array of the current saved scores from <em>highest to lowest</em>, or <strong>nil</strong> and an error.</p>
+<p><strong>Examples</strong></p>
+<p><em>Default</em></p>
+<div class="codehilite"><pre><span></span><span class="n">Scores</span><span class="p">:</span><span class="n">save</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+
+
+<p><em>Using return value</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">save</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">scores</span> <span class="kr">do</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<p><em>Save and cap to 10 scores</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">save</span><span class="p">(</span><span class="mi">154</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">scores</span> <span class="kr">do</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<p><em>Using error checking</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">scores</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">save</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">scores</span> <span class="kr">then</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+<span class="kr">else</span>
+  <span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">scores</span> <span class="kr">do</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<p><strong>Notes</strong></p>
+<p>If you pass the <code>limit</code> argument, the score list will be "capped" at that number. For example if you only want to keep the top 20 scores set the <code>limit</code> to 20. Any new scores that are <em>higher than the lowest</em> score in the list will be replaced to keep the list capped to 20 scores.</p>
+<p>You can change the <code>limit</code> at any time, but be aware if you set it to a smaller number than what you started with, the extra scores (lowest to highest) will be dropped to match the new "cap" size.</p>
+<hr />
+<h3 id="list">list</h3>
+<p>List players saved scores.</p>
+<div class="codehilite"><pre><span></span><span class="n">list</span><span class="p">([</span><span class="n">sort</span><span class="p">][,</span> <span class="n">limit</span><span class="p">])</span>
+</pre></div>
+
+
+<p><strong>Arguments</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sort</td>
+<td>Either 'high' or 'low'. The default is 'high'. See <strong>Notes</strong> below.</td>
+<td><em>String</em></td>
+<td><strong>N</strong></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>Cap the amount of scores returned. Defaults to all scores.</td>
+<td><em>Number</em></td>
+<td><strong>N</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>A <em>Table</em> array of score values. By default the scores are sorted from <em>highest to lowest</em>. If no values have been saved yet, the array will be empty.</p>
+<p><strong>Examples</strong></p>
+<p><em>List all saved scores, highest to lowest</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">list</span><span class="p">()</span>
+
+<span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">scores</span> <span class="kr">do</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<p><em>List top 5 saved scores (see also the <strong><a href="../api/#top">top</a></strong> method)</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">list</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">scores</span> <span class="kr">do</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<p><em>List all scores, lowest to highest</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">list</span><span class="p">(</span><span class="s1">&#39;low&#39;</span><span class="p">)</span>
+
+<span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">scores</span> <span class="kr">do</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<p><em>List 10 scores, lowest to highest</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">list</span><span class="p">(</span><span class="s1">&#39;low&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">scores</span> <span class="kr">do</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<p><strong>Notes</strong></p>
+<p>Possible <code>sort</code> values</p>
+<ul>
+<li>'high' returns the scores from <em>highest to lowest</em>.</li>
+<li>'low' returns the scores from <em>lowest to highest</em>.</li>
+</ul>
+<p>See the <strong><a href="../api/#top">top</a></strong> method below, which is a convenience function to get the top scores.</p>
+<hr />
+<h3 id="top">top</h3>
+<p>List the players top saved scores from <em>highest to lowest</em>.</p>
+<div class="codehilite"><pre><span></span><span class="n">top</span><span class="p">([</span><span class="n">limit</span><span class="p">])</span>
+</pre></div>
+
+
+<p><strong>Arguments</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>limit</td>
+<td>Cap the amount of scores returned. Defaults to 10.</td>
+<td><em>Number</em></td>
+<td><strong>N</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>A <em>Table</em> array of the top 10 score values (unless <code>limit</code> is provided), sorted from <em>highest to lowest</em>. If no values have been saved yet, the array will be empty.</p>
+<p><strong>Examples</strong></p>
+<p><em>Default (top 10)</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">top</span><span class="p">()</span>
+
+<span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">scores</span> <span class="kr">do</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<p><em>Load top 25 scores</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">top</span><span class="p">(</span><span class="mi">25</span><span class="p">)</span>
+
+<span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">scores</span> <span class="kr">do</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<hr />
+<h3 id="bottom">bottom</h3>
+<p>Load player scores from the bottom of the list. See <strong>Notes</strong> below.</p>
+<div class="codehilite"><pre><span></span><span class="n">bottom</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span>
+</pre></div>
+
+
+<p><strong>Arguments</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>limit</td>
+<td>Cap the amount of scores returned.</td>
+<td><em>Number</em></td>
+<td><strong>Y</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>A <em>Table</em> array of saved score values. If no values have been saved yet, the array will be empty. See <strong>Notes</strong> below.</p>
+<p><strong>Example</strong></p>
+<p><em>List the bottom 5 scores, sorted highest to lowest</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">bottom</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">scores</span> <span class="kr">do</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<p><strong>Notes</strong></p>
+<p>If you want an ordered list of scores from <em>lowest to highest</em>, you must use the <strong><a href="../api/#list">list</a></strong> method. This method returns the lowest scores saved, capped by the <code>limit</code> argument, sorted from <em>highest to lowest</em>.</p>
+<p>If the <code>limit</code> argument is equal to or greater than the amount of current scores saved, this method oprerate exactly like the <strong><a href="../api/#top">top</a></strong> method.</p>
+<p>If you don't pass the <code>limit</code> argument, the lowest score will be returned in the <em>Table</em> array. See also <strong><a href="../api/#lowest">lowest</a></strong>.</p>
+<hr />
+<h3 id="highest">highest</h3>
+<p>Get the players highest score saved.</p>
+<div class="codehilite"><pre><span></span><span class="n">highest</span><span class="p">()</span>
+</pre></div>
+
+
+<p><strong>Arguments</strong></p>
+<p><em>This method takes no arguments.</em></p>
+<p><strong>Returns</strong></p>
+<p>A <em>Number</em> value of the highest score. If no saved values exist returns 0.</p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">score</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">highest</span><span class="p">()</span>
+</pre></div>
+
+
+<p><strong>Notes</strong></p>
+<p>This method returns a single value directly as a <em>Number</em>. It is not a <em>Table</em> array.</p>
+<hr />
+<h3 id="lowest">lowest</h3>
+<p>Get the players lowest score saved.</p>
+<div class="codehilite"><pre><span></span><span class="n">lowest</span><span class="p">()</span>
+</pre></div>
+
+
+<p><strong>Arguments</strong></p>
+<p><em>This method takes no arguments.</em></p>
+<p><strong>Returns</strong></p>
+<p>A <em>Number</em> value of the lowest score. If no saved values exist returns 0.</p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">score</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">lowest</span><span class="p">()</span>
+</pre></div>
+
+
+<p><strong>Notes</strong></p>
+<p>This method returns a single value directly as a <em>Number</em>. It is not a <em>Table</em> array.</p>
+<hr />
+<h3 id="trim">trim</h3>
+<p>Trim the players saved score list to the specified size and update the storage file.</p>
+<div class="codehilite"><pre><span></span><span class="n">trim</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+
+
+<p><strong>Arguments</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>size</td>
+<td>The length of the new score list. Must be greater than zero. See <strong>Notes</strong> below.</td>
+<td><em>Number</em></td>
+<td><strong>Y</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>A <em>Table</em> array of score values, sorted from <em>highest to lowest</em>, or <strong>nil</strong> and an error.</p>
+<p><strong>Examples</strong></p>
+<p><em>Trim the list to contain only the top 10 scores</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">scores</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">trim</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">scores</span> <span class="kr">do</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<p><em>Using error checking</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">scores</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">trim</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">scores</span> <span class="kr">then</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+<span class="kr">else</span>
+  <span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">scores</span> <span class="kr">do</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<p><strong>Notes</strong></p>
+<p>This method is destructive by nature. After the trim has been the processed, the results will immediately be saved to the stroage file.</p>
+<p>Trim will remove any scores beyond the provided <code>size</code> parameter. Scores are first sorted <em>highest to lowest</em> before the trim.</p>
+<p>The <code>size</code> argument must be greater than zero. To clear all score values from the list use the <strong><a href="../api/#empty">empty</a></strong> method below.</p>
+<hr />
+<h3 id="empty">empty</h3>
+<p>Empty the players score list. All saved scores are removed and the storage file is updated.</p>
+<div class="codehilite"><pre><span></span><span class="n">empty</span><span class="p">()</span>
+</pre></div>
+
+
+<p><strong>Arguments</strong></p>
+<p><em>This method takes no arguments.</em></p>
+<p><strong>Returns</strong></p>
+<p>An empty <em>Table</em> array, or <strong>nil</strong> and an error.</p>
+<p><strong>Examples</strong></p>
+<p><em>Default</em></p>
+<div class="codehilite"><pre><span></span><span class="n">Scores</span><span class="p">:</span><span class="n">empty</span><span class="p">()</span>
+</pre></div>
+
+
+<p><em>Using error checking</em></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">scores</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">empty</span><span class="p">()</span>
+
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">scores</span> <span class="kr">then</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+<span class="kr">else</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;success&quot;</span><span class="p">)</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<p><strong>Notes</strong></p>
+<p>This method is destructive by nature. After the empty method has run, the results will immediately be saved to the stroage file (an empty <em>Table</em> array).</p>
+<hr />
+<h3 id="flush">flush</h3>
+<p>Deletes all scores and the storage file from the device.</p>
+<div class="codehilite"><pre><span></span><span class="n">flush</span><span class="p">()</span>
+</pre></div>
+
+
+<p><strong>Arguments</strong></p>
+<p><em>This method takes no arguments.</em></p>
+<p><strong>Returns</strong></p>
+<p>A <em>Boolean</em> <code>true</code> on success, or <strong>nil</strong> and an error.</p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">Scores</span><span class="p">:</span><span class="n">flush</span><span class="p">()</span>
+
+<span class="kr">if</span> <span class="ow">not</span> <span class="n">ok</span> <span class="kr">then</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+<span class="kr">else</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;storage file removed&quot;</span><span class="p">)</span>
+<span class="kr">end</span>
+</pre></div>
+
+
+<p><strong>Notes</strong></p>
+<p>This method is destructive by nature. All scores and the storage file will no longer be accessible.</p>
+<p>A new storage file will be created the next time the <strong><a href="../api/#save">save</a></strong> method is used.</p>
+<hr />
+<h3 id="debug">debug</h3>
+<p>Utility method. Prints all saved scores to the Corona console.</p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="n">Scores</span><span class="p">:</span><span class="n">debug</span><span class="p">()</span>
+</pre></div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../encrypt/" class="btn btn-neutral float-right" title="Encryption">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy;2018 C. Byerley - develephant.com</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../encrypt/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
+
+</body>
+</html>
